@@ -1,9 +1,12 @@
 package ru.svirida.service.impl;
 
 
+import org.springframework.stereotype.Service;
 import ru.svirida.service.Estimate;
 
+@Service
 public class EstimateImpl implements Estimate {
+
     @Override
     public String giveEstimate(Integer mark) {
         String estimate = "";
