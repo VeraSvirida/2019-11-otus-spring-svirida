@@ -13,11 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-
 public class CsvFileReaderImpl implements QuestionReader {
-
     private final Resource questionResource;
-
     private static final String[] FILE_HEADER_MAPPING = {"id", "Question", "Answer"};
     private static final CSVFormat CSV_FILE_FORMAT = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
 
