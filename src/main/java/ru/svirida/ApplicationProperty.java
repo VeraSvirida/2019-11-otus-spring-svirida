@@ -1,21 +1,32 @@
 package ru.svirida;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-@Configuration
-@PropertySource("classpath:application.properties")
+@Component
+@ConfigurationProperties("application")
 public class ApplicationProperty {
-    @Value("${app.resource}")
-    Resource questionResource;
+    @Value("${application.version}")
+    private String version;
+
+    @Value("${application.resource}")
+    private Resource questionResource;
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     @Bean
     public Resource resource() {

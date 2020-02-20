@@ -1,18 +1,21 @@
 package ru.svirida;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import ru.svirida.service.Testing;
 
 import java.io.IOException;
 
-@ComponentScan
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) throws IOException {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        Testing testing = context.getBean(Testing.class);
+        ApplicationContext applicationContext = SpringApplication.run(Main.class, args);
+        ApplicationProperty applicationProperties = applicationContext.getBean(ApplicationProperty.class);
+        System.out.println(applicationProperties.getVersion());
+        Testing testing = applicationContext.getBean(Testing.class);
         testing.makeTesting();
-    }
 
+    }
 }
 

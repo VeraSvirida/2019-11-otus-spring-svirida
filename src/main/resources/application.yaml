@@ -1,0 +1,7 @@
+application:
+  version: версия приложения 4.0
+  resource: question.csv
+server:
+  port: 8090
+
+
