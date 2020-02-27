@@ -1,24 +1,26 @@
 package ru.svirida.service.impl;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.shell.jline.InteractiveShellApplicationRunner;
+import org.springframework.shell.jline.ScriptShellApplicationRunner;
+import org.springframework.util.Assert;
+import ru.svirida.Main;
 import ru.svirida.service.Estimate;
 
-import static org.hamcrest.core.Is.is;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = Main.class, properties = {
+        InteractiveShellApplicationRunner.SPRING_SHELL_INTERACTIVE_ENABLED + "=false",
+        ScriptShellApplicationRunner.SPRING_SHELL_SCRIPT_ENABLED + "=false"
+})
 public class EstimateImplTest {
     @Autowired
     private Estimate estimate;
 
     @Test
     public void whenStudentHasRateFourth() {
-        Assert.assertThat(estimate.giveEstimate(4), is("Хорошо! Вы ответили на 4 вопроса!"));
+        Assert.hasText(estimate.giveEstimate(4), "Хорошо! Вы ответили на 4 вопроса!");
     }
 
 }

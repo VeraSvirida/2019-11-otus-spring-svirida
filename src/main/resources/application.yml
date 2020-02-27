@@ -3,5 +3,7 @@ application:
   resource: question.csv
 server:
   port: 8090
-
-
+spring:
+  shell:
+    interactive:
+      enabled: true

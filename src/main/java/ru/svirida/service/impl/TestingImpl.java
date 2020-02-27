@@ -1,7 +1,6 @@
 package ru.svirida.service.impl;
 
 import org.springframework.stereotype.Service;
-import ru.svirida.domain.Person;
 import ru.svirida.domain.Question;
 import ru.svirida.service.Estimate;
 import ru.svirida.service.QuestionReader;
@@ -27,18 +26,10 @@ public class TestingImpl implements Testing {
     }
 
     @Override
-    public void makeTesting() throws IOException {
+    public void makeTesting() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String answer;
             Integer mark = 0;
-            System.out.println(resourceBundle.getString("input.name"));
-            String secondName = reader.readLine();
-            System.out.println(resourceBundle.getString("input.surename"));
-            String firstName = reader.readLine();
-            Person person = new Person();
-            person.setFirstName(firstName);
-            person.setSecondName(secondName);
-            System.out.println(resourceBundle.getString("hello.user") + secondName + " " + firstName + "! " + resourceBundle.getString("output.answer"));
             List<Question> questionList = questionReader.readFile();
             for (Question question : questionList) {
                 System.out.println(question.getQuestion());
@@ -48,6 +39,9 @@ public class TestingImpl implements Testing {
                 }
             }
             estimate.giveEstimate(mark);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 }

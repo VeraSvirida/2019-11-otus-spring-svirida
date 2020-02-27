@@ -1,7 +1,6 @@
 package ru.svirida;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -11,8 +10,8 @@ import org.springframework.stereotype.Component;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+
 @Component
-@ConfigurationProperties("application")
 public class ApplicationProperty {
     @Value("${application.version}")
     private String version;
